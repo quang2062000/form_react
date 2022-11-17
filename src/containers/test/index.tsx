@@ -1,6 +1,6 @@
-import { InputLabel } from "@material-ui/core";
+import { Button, InputLabel } from "@material-ui/core";
 import { isEmpty } from "lodash";
-import React, { useCallback, useMemo } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import FormSelect from "../../component/common/FormSelect";
 import FormTextField from "../../component/common/FormTextField";
 import TestComponent from "../../component/test";
@@ -14,6 +14,7 @@ import {
 import { useStyle } from "./styles";
 import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
 import FormSecureTextField from "../../component/common/FormSecureTextField";
+import ConfirmRemove from "../../component/common/Dialog/ConfirmRemove";
 
 export default function Test() {
   const classes = useStyle();
@@ -95,6 +96,20 @@ export default function Test() {
     console.log("alooooooooooooooo");
   }, []);
 
+  const [open, setOpen] = useState<boolean>(false);
+
+  const openDialog = useCallback(() => {
+    setOpen(true);
+  }, [setOpen]);
+
+  const onCancel = useCallback(() => {
+    setOpen(false);
+  }, [setOpen]);
+
+  const onConfirm = useCallback(() => {
+    setOpen(false);
+  }, [setOpen]);
+
   return (
     <>
       <FormSelect
@@ -144,6 +159,20 @@ export default function Test() {
       />
       <div style={{ width: "300px" }}>
         <FormSecureTextField placeholder="password" />
+      </div>
+      <Button onClick={openDialog} variant="contained">
+        Confirm
+      </Button>
+      <div>
+        <ConfirmRemove
+          message="Bạn có muốn thực hiện tiếp không?"
+          cancelButtonLabel="CANCEL"
+          confirmButtonLabel="DELETE"
+          open={open}
+          title="Xác thực"
+          onCancel={onCancel}
+          onConfirm={onConfirm}
+        />
       </div>
     </>
   );
