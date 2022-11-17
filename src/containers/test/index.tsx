@@ -15,6 +15,7 @@ import { useStyle } from "./styles";
 import SupervisorAccountIcon from "@material-ui/icons/SupervisorAccount";
 import FormSecureTextField from "../../component/common/FormSecureTextField";
 import ConfirmRemove from "../../component/common/Dialog/ConfirmRemove";
+import FormDate from "../../component/common/FormDate";
 
 export default function Test() {
   const classes = useStyle();
@@ -172,6 +173,14 @@ export default function Test() {
           title="Xác thực"
           onCancel={onCancel}
           onConfirm={onConfirm}
+        />
+      </div>
+      <div style={{ width: "1200px" }}>
+        <FormDate
+          endDateNow={1}
+          startDateNow={2}
+          handleChangeParams={onConfirm}
+          openApplyCvByTime={true}
         />
       </div>
     </>
