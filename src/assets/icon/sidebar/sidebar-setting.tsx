@@ -1,7 +1,7 @@
 import React from "react";
 import { activeColor, inactiveColor } from "./config";
 
-interface Props {
+export interface Props {
   isActive?: boolean;
 }
 function IconSidebarSetting({ isActive }: Props) {

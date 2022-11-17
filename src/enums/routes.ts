@@ -8,4 +8,8 @@ export enum AuthRuotesEnum {
 }
 
 // Routes available for authenticated user
-export enum appRoutesEnum {}
+export enum appRoutesEnum {
+  test = "/test/",
+  test2 = "/test2/",
+  test3 = "/test3/",
+}
