@@ -1,6 +1,6 @@
+import React, { useCallback, useMemo, useState } from "react";
 import { Button, InputLabel } from "@material-ui/core";
 import { isEmpty } from "lodash";
-import React, { useCallback, useMemo, useState } from "react";
 import FormSelect from "../../component/common/FormSelect";
 import FormTextField from "../../component/common/FormTextField";
 import TestComponent from "../../component/test";
@@ -180,7 +180,7 @@ export default function Test() {
           endDateNow={1}
           startDateNow={2}
           handleChangeParams={onConfirm}
-          openApplyCvByTime={true}
+          openApplyCvByTime={false}
         />
       </div>
     </>

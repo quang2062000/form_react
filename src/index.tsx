@@ -3,13 +3,24 @@ import ReactDOM from "react-dom/client";
 import App from "./containers/App";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
+import configureStore from "store";
+import { Provider } from "react-redux";
+import { CssBaseline, ThemeProvider } from "@material-ui/core";
+import theme from "material";
+
+const store = configureStore();
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        <App />
+      </ThemeProvider>
+    </Provider>
   </React.StrictMode>
 );
 

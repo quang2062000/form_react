@@ -51,10 +51,12 @@ const getDate = (date: Date) => {
   return moment(date).toDate();
 };
 
-export default {
+const dateType = {
   toString,
   getXDayFromDate,
   dateRangeToString,
   toUtcString,
   getDate,
 };
+
+export default dateType;
