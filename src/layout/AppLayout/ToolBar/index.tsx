@@ -6,10 +6,11 @@ import IconLogOut from "../../../assets/icon/logout";
 
 export interface Props {
   openDrawer: () => void;
+  handleLogout: () => void;
 }
 
 export default function CvManageToolbar(props: PropsWithChildren<Props>) {
-  const { openDrawer } = props;
+  const { openDrawer, handleLogout } = props;
   const classes = useStyles();
   return (
     <Toolbar className={classes.root}>
@@ -40,6 +41,7 @@ export default function CvManageToolbar(props: PropsWithChildren<Props>) {
               data-testid="logoutButton"
               className={classes.logOutButton}
               color="inherit"
+              onClick={handleLogout}
             >
               <IconLogOut />
             </IconButton>

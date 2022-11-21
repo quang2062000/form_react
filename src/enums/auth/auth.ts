@@ -2,7 +2,7 @@ export enum SecureStorageEnum {
   AccessToken = "accessToken",
   RefreshToken = "refreshToken",
   Account = "account",
-  UserName = "userName",
+  Name = "name",
   AvatarLink = "avatar",
   Role = "role",
 }

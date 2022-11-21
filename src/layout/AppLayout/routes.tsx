@@ -10,8 +10,8 @@ const routes: {
   icon: (props: IconProps) => React.ReactElement;
 }[] = [
   {
-    path: appRoutesEnum.test,
-    label: "Menu 1",
+    path: appRoutesEnum.user,
+    label: "Manager User",
     icon: (props: IconProps) => <IconSDrawerSetting {...props} />,
   },
   {

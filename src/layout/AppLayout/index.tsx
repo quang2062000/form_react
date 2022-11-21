@@ -1,6 +1,8 @@
 import React, { ElementType, useCallback, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
-import { appRoutesEnum } from "../../enums/routes";
+import { logoutAction } from "store/actions/loginAction";
+import { appRoutesEnum, AuthRuotesEnum } from "../../enums/routes";
 import AppBar from "./AppBar";
 import ManageDrawer from "./Drawer";
 import { styles } from "./styles";
@@ -31,6 +33,7 @@ export function Layout(props: LayoutProps) {
   const handleOpenDrawer = useCallback(() => {
     setOpen((state) => !state);
   }, []);
+  const dispatch = useDispatch();
 
   const handleNavigate = useCallback(
     (route: appRoutesEnum) => {
@@ -39,10 +42,18 @@ export function Layout(props: LayoutProps) {
     [navigation]
   );
 
+  const handleAffterLogout = useCallback(() => {
+    navigation(AuthRuotesEnum.Login);
+  }, [navigation]);
+
+  const handleLogout = useCallback(() => {
+    dispatch<any>(logoutAction(handleAffterLogout));
+  }, [dispatch, handleAffterLogout]);
+
   return (
     <>
       <AppBar>
-        <Toolbar openDrawer={handleOpenDrawer} />
+        <Toolbar openDrawer={handleOpenDrawer} handleLogout={handleLogout} />
       </AppBar>
       <div className={classes.wrapContent}>
         <ManageDrawer

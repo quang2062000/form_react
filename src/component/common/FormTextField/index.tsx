@@ -70,7 +70,6 @@ export default function FormTextField(props: FormTextFieldProps) {
     <TextField
       variant="outlined"
       fullWidth
-      type="password"
       InputProps={{
         endAdornment,
         ...InputProps,

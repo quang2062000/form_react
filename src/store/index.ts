@@ -8,11 +8,13 @@ import {
 } from "./reducers/asyncTaskReducer";
 import { dialogReducer, initialDialogState } from "./reducers/dialogReducer";
 import { RootStateType } from "../types/store";
+import { loginReducer, initialLoginState } from "./reducers/loginReducer";
 
 export const initialRootState: RootStateType = {
   snackBarReducer: initialSnackBarState,
   asyncTaskReducer: initialAsyncTaskState,
   dialogReducer: initialDialogState,
+  loginReducer: initialLoginState,
 };
 
 export default function configureStore(
@@ -29,6 +31,7 @@ export default function configureStore(
     snackBarReducer,
     asyncTaskReducer,
     dialogReducer,
+    loginReducer,
   });
 
   return createStore(appReducer, preloadedState, composedEnhancers as any);
