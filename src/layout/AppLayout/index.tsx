@@ -1,12 +1,11 @@
+import { Avatar, Grid } from "@material-ui/core";
 import React, { ElementType, useCallback, useState } from "react";
 import { useDispatch } from "react-redux";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { logoutAction } from "store/actions/loginAction";
 import { appRoutesEnum, AuthRuotesEnum } from "../../enums/routes";
-import AppBar from "./AppBar";
 import ManageDrawer from "./Drawer";
 import { styles } from "./styles";
-import Toolbar from "./ToolBar";
 
 export interface RouteProps {
   caseSensitive?: boolean;
@@ -28,14 +27,12 @@ export function Layout(props: LayoutProps) {
   const { RenderComponent } = props;
   const classes = styles();
   const navigation = useNavigate();
-  const [open, setOpen] = useState(true);
-  const routeLocation = useLocation();
-  const handleOpenDrawer = useCallback(() => {
-    setOpen((state) => !state);
-  }, []);
+  const [collapsed, setCollapsed] = useState(false);
+  const [toggled, setToggled] = useState(false);
+
   const dispatch = useDispatch();
 
-  const handleNavigate = useCallback(
+  const onNavigate = useCallback(
     (route: appRoutesEnum) => {
       navigation(route);
     },
@@ -50,23 +47,37 @@ export function Layout(props: LayoutProps) {
     dispatch<any>(logoutAction(handleAffterLogout));
   }, [dispatch, handleAffterLogout]);
 
+  const handleCollapsedChange = () => {
+    setCollapsed(!collapsed);
+  };
+
+  const handleToggleSidebar = (value: any) => {
+    setToggled(value);
+  };
+
   return (
     <>
-      <AppBar>
-        <Toolbar openDrawer={handleOpenDrawer} handleLogout={handleLogout} />
-      </AppBar>
-      <div className={classes.wrapContent}>
-        <ManageDrawer
-          openDrawer={open}
-          onNavigate={handleNavigate}
-          path={routeLocation.pathname}
-        />
-        <div className={classes.wrapContentRight}>
-          <div className={classes.contentRight}>
-            <RenderComponent />
-          </div>
-        </div>
-      </div>
+      <Grid xs={12} lg={12} className={classes.wrapper}>
+        <Grid className={classes.wrapSidebar}>
+          <ManageDrawer
+            collapsed={collapsed}
+            toggled={toggled}
+            handleToggleSidebar={handleToggleSidebar}
+            handleCollapsedChange={handleCollapsedChange}
+            onNavigate={onNavigate}
+          />
+        </Grid>
+        <Grid xs={12} lg={12} className={classes.wrapContent}>
+          <Grid className={classes.wrapContentTop}>
+            <Avatar className={classes.avatar} />
+          </Grid>
+          <Grid xs={12} lg={12} className={classes.wrapContentBottom}>
+            <div className={classes.contentBottom}>
+              <RenderComponent />
+            </div>
+          </Grid>
+        </Grid>
+      </Grid>
     </>
   );
 }

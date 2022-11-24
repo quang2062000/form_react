@@ -96,4 +96,7 @@ export const styles = makeStyles((theme) => ({
       color: theme.colors.pureWhite,
     },
   },
+  number: {
+    color: "red",
+  },
 }));

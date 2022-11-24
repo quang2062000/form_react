@@ -1,29 +1,67 @@
 import React from "react";
 import { appRoutesEnum } from "../../enums/routes";
-import IconSDrawerSetting, {
-  Props as IconProps,
-} from "../../assets/icon/sidebar/sidebar-setting";
+import { FaUser, FaGem, FaList } from "react-icons/fa";
+
+const subMenu1Routes: {
+  path: appRoutesEnum;
+  label: string;
+}[] = [
+  {
+    path: appRoutesEnum.user,
+    label: "Sub Menu 1",
+  },
+  {
+    path: appRoutesEnum.test3,
+    label: "Sub Menu 2",
+  },
+  {
+    path: appRoutesEnum.test2,
+    label: "Sub Menu 3",
+  },
+];
+
+const subMenu2Routes: {
+  path: appRoutesEnum;
+  label: string;
+}[] = [
+  {
+    path: appRoutesEnum.user,
+    label: "Sub Menu 1",
+  },
+  {
+    path: appRoutesEnum.test2,
+    label: "Sub Menu 2",
+  },
+];
 
 const routes: {
   path: appRoutesEnum;
   label: string;
-  icon: (props: IconProps) => React.ReactElement;
+  icon: React.ReactNode;
+  count?: number;
 }[] = [
   {
     path: appRoutesEnum.user,
-    label: "Manager User",
-    icon: (props: IconProps) => <IconSDrawerSetting {...props} />,
+    label: "Menu 1",
+    icon: <FaUser />,
+    count: subMenu1Routes.length,
   },
   {
     path: appRoutesEnum.test2,
     label: "Menu 2",
-    icon: (props: IconProps) => <IconSDrawerSetting {...props} />,
+    icon: <FaGem />,
+    count: subMenu2Routes.length,
   },
   {
     path: appRoutesEnum.test3,
     label: "Menu 3",
-    icon: (props: IconProps) => <IconSDrawerSetting {...props} />,
+    icon: <FaList />,
   },
 ];
 
-export default routes;
+const managerRoutes = {
+  routes,
+  subMenu1Routes,
+  subMenu2Routes,
+};
+export default managerRoutes;
